@@ -1,0 +1,42 @@
+build:
+  image: rzarouali/alpine-serverspec:develop
+
+publish:
+  docker:
+    username: $$DOCKER_USERNAME 
+    password: $$DOCKER_PASSWORD
+    email: $$DOCKER_EMAIL
+    repo: rzarouali/ocm-graphite
+    tag: $${BRANCH/master/latest}
+    file: Dockerfile
+    when:
+      repo: xinity/ocm-graphite
+      branch: [develop, master]
+#    when:
+#      branch: master
+    #environment:
+    # - DOCKER_LAUNCH_DEBUG=true
+
+notify:
+  gitter:
+     webhook: https://webhooks.gitter.im/e/f21cf2e6dc1e3f42a8a4
+
+plugin:
+  name: Docker
+  desc: Build and Publish images to a Docker registry.
+  type: publish
+  image: plugins/drone-docker
+  labels:
+    - docker
+    - image
+    - container
+
+plugin:
+  name: Gitter
+  desc: Build and Publish images to a Docker registry.
+  type: publish
+  image: plugins/drone-gitter
+  labels:
+    - notify
+    - gitter
+    - container

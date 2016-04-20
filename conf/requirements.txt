@@ -1,0 +1,15 @@
+django
+simplejson
+python-memcached
+gunicorn
+django-auth-ldap
+django-tagging
+twisted
+pytz
+pyparsing
+flup
+whitenoise
+txamqp
+whisper==0.9.15
+carbonate
+cairocffi
